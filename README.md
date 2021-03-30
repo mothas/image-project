@@ -38,7 +38,8 @@ The script code is essentially a data-pipeline tied together by Channels.
 The function `downloadColor()` creates multiple instances of GoRoutine `downloader()` based on variable `numDownloaders`. Feel free to edit `numDownloaders` based on machine's capacity.
 
 Check if url-hash exists in HashMap
-* **YES**: publish url-color to Channel `urlColor_chan`
+* **YES**: 
+    * publish url-color to Channel `urlColor_chan`
 * **NO**:
     * Download Image (not stored on disk)
     * Decode image and compute 3 prevalent colors.
@@ -66,7 +67,7 @@ This assumes there's an input file by the name `input.txt` in the same level/fol
 **NOTE**: The script ALWAYS writes to `output.txt`
 
 # Known Problems / Future Roadmap
-Below are a few problems that exists in the current version of code. There's ample room to improve the current script
+Below are a few problems that exists in the current version of code. There's ample room to improve the current script. If I had more time, I would have loved to work on the below points
 * An error occurs after writing out Output file. Not sure why that's happening
 * Order in output file doesn't reflect the order of URLs in input file. This is because of asynchronous processing using Channels to communicate between various GoRoutines
 * Code can be organized better using Go Packages
