@@ -48,15 +48,16 @@ Check if url-hash exists in HashMap
 
 # Run / Install
 There are no external packages used in this script.
- 
-A few ways to run script
-* Option 1
+
+A few ways to run script:
+
+**Option 1**
 
     go run main.go
 
 This assumes there's an input file by the name `input.txt` in the same level/folder as the script.
 
-* Option 2
+**Option 2**
 
     go run main.go <path-to-input-file>
 
