@@ -21,6 +21,8 @@ Other points:
 
 Given the scale of input data, this problem can be solved using concurrent processing techniques. I chose `Golang` for this reason as Golang provides rich primitives(channels, waitgroups etc) that can allow user to write a concurrent approach. I spent about a week to learn **Golang** and **Concurrent programming** - both of which were new to me!
 
+The script code is essentially a data-pipeline tied together by Channels.
+
 # Code Outline
 
 ![Program Flow](program_flow.png)
@@ -64,7 +66,9 @@ This assumes there's an input file by the name `input.txt` in the same level/fol
 **NOTE**: The script ALWAYS writes to `output.txt`
 
 # Known Problems / Future Roadmap
-Below are a few problems that exists in the current version of code. There's ample room to improve the current script.
-* An error occurs after writing out Output file. Not sure why that's happening.
-* Order in output file doesn't reflect the order of URLs in input file. This is because of asynchronous processing using Channels to communicate between various GoRoutines.
-* Code can be organized better using Go Packages.
+Below are a few problems that exists in the current version of code. There's ample room to improve the current script
+* An error occurs after writing out Output file. Not sure why that's happening
+* Order in output file doesn't reflect the order of URLs in input file. This is because of asynchronous processing using Channels to communicate between various GoRoutines
+* Code can be organized better using Go Packages
+* A few images cannot be decoded. You may see an error `invalid JPEG format: missing SOI marker` for such images. The color data for such images are stored as `#ERRORR`
+* Error handling can be improved in many places.

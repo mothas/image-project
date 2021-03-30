@@ -47,6 +47,7 @@ func main() {
 	fmt.Println("Script completed!")
 }
 
+// Read file and publishe URL to url_chan
 func readFile() chan string {
 	url_chan := make(chan string)
 
@@ -92,6 +93,7 @@ func GetMD5Hash(text string) string {
 	return hex.EncodeToString(hash[:])
 }
 
+// Read from url_chan and publish hash(url) to urlHash_chan
 func hashUrl(url_chan chan string) chan urlHash {
 	urlHash_chan := make(chan urlHash)
 
@@ -105,6 +107,7 @@ func hashUrl(url_chan chan string) chan urlHash {
 	return urlHash_chan
 }
 
+// Checks if url was downloaded earlier based on url-hash.
 func downloadColor(urlHash_chan chan urlHash) chan urlColor {
 
 	urlColor_chan := make(chan urlColor)
@@ -139,6 +142,7 @@ func downloadColor(urlHash_chan chan urlHash) chan urlColor {
 	return urlColor_chan
 }
 
+// Multiple instances(based on numDownloaders) of downloaded reads from download_chan
 func downloader(download_chan chan urlHash, urlColor_chan chan urlColor, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -215,6 +219,7 @@ func rgb2hex(color RGB) string {
 	return strings.ToUpper("#" + (r + g + b))
 }
 
+// Download image and process image
 func process_image(url urlHash) urlColor {
 	resp, err := http.Get(url.url)
 	if err != nil {
